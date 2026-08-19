@@ -36,21 +36,30 @@ space. Three constants improved on the baseline:
 | `brake_ticks_div` | 3.0 | **2.5** | shorter brake pulses |
 | `mu_s3_new` | 3.6 | **3.7** | higher assumed grip, section 3 |
 | `mu_s6` | 3.3 | **3.275** | slight trim, section 6 |
+| steering base divisor | 120 | **116** | slightly more steering per unit speed |
 
 ## Measured performance
 
 Times are for the full 3-lap race, on the Monza v1.1 map.
 
-| | median | best | worst | collisions |
-|---|---|---|---|---|
-| baseline (Spring 2026 winner) | 320.40 | 320.40 | 320.40 | 0 |
-| **this submission** | **320.20** | 320.10 | 320.25 | **0** |
+| | median | best | worst | spread | collisions |
+|---|---|---|---|---|---|
+| baseline (Spring 2026 winner) | 320.40 | 320.35 | 320.40 | 0.05 | 0 |
+| **this submission** | **320.05** | 320.05 | 320.10 | **0.05** | **0** |
 
-Both were measured over repeated runs on the same machine. A note on honesty:
-the baseline is perfectly repeatable (320.40 on every run), while this
-configuration shows about 0.15 s of run-to-run variation — small floating-point
-differences can shift a braking decision by a tick. We therefore report the
-**median** rather than our best single sample (320.05). Even the slowest
-observed run is faster than the baseline.
+Measured over 5 repeated runs each, same machine, same conditions.
+
+A note on method. Times here vary slightly run to run: identical configurations
+can differ by a tick or two because tiny floating-point differences shift a
+braking decision. We found configurations whose spread reached 0.30 s — larger
+than the differences we were trying to measure. Ranking candidates on a single
+race is therefore unreliable, and our first choice of configuration turned out
+to be 0.15 s slower than this one once we measured properly.
+
+We selected this configuration on its **median across repeated runs** and on its
+**stability**: its slowest observed run (320.10) is still faster than any other
+candidate's median, and its 0.05 s spread was the tightest we measured. We
+preferred that to a configuration with a faster single sample and a wider
+spread, since the latter is likelier to disappoint on unfamiliar hardware.
 
 The solution completes all three laps with **zero collisions**.

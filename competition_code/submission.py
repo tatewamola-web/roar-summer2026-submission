@@ -237,7 +237,7 @@ class RoarCompetitionSolution:
             additional_waypoints,
         )
 
-        steerMultiplier = round((current_speed_kmh + 0.001) / 120, 3)
+        steerMultiplier = round((current_speed_kmh + 0.001) / 116, 3)
         
         if self.current_waypoint_idx in [800, 801]:
             self.s3_mult = 0.85
